@@ -1,0 +1,24 @@
+{
+  "name": "firewall-my-systems",
+  "version": "0.1.0",
+  "description": "quick firewall rules builder",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "firewall",
+    "rules",
+    "iptables",
+    "pf",
+    "ipfw",
+    "builder",
+    "easy"
+  ],
+  "author": "Jake Teton-Landis",
+  "license": "GPL",
+  "dependencies": {
+    "babel": "^4.4.3",
+    "express": "^4.11.2"
+  }
+}
