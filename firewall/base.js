@@ -9,12 +9,12 @@ module.exports = class BaseFirewall {
     this.udp = config.udp || []
   }
 
-  function tcp(port) {
+  tcp(port) {
     this.tcp.push(port)
     return this
   }
 
-  function udp(port) {
+  udp(port) {
     this.udp.push(port)
     return this
   }

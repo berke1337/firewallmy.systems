@@ -24,3 +24,8 @@ app.get(/\/iptables\/?(.*)/, (req, res) => {
   const firewall = new IPTables(ports)
   res.send(firewall.build())
 })
+
+const PORT = process.env.PORT || 8080
+
+console.log('PORT =', PORT)
+app.listen(PORT)
