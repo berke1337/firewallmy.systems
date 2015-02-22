@@ -1,5 +1,17 @@
 const firewalls = require('./firewall')
-const DECL = /(t|u)(\d+)/g
+const DECL = /(t|u|tu|ut)(\d+)/g
+
+function matchAll(string, regexp) {
+  var matches = [];
+  string.replace(regexp, function() {
+    const arr = ([]).slice.call(arguments, 0);
+    const extras = arr.splice(-2);
+    arr.index = extras[0];
+    arr.input = extras[1];
+    matches.push(arr);
+  });
+  return matches.length ? matches : null;
+}
 
 /**
  * main firewall building function
@@ -24,15 +36,22 @@ function make(name, portspec) {
  */
 function parse(str) {
   const result = {tcp: [], udp: []}
-  const matches = str.match(DECL)
+  const matches = matchAll(str, DECL)
+  console.log(matches)
   if (!matches) return result;
   
   matches.forEach(part => {
-    const num = Number(part.slice(1));
-    if (part[0] === 't') result.tcp.push(num);
-    if (part[0] === 'u') result.udp.push(num);
+    const proto = part[1]
+    const num = Number(part[2])
+
+    if (proto === 'tu' || proto === 'ut') {
+      result.tcp.push(num);
+      result.udp.push(num);
+    } 
+    else if (proto === 't') result.tcp.push(num);
+    else if (proto === 'u') result.udp.push(num);
   })
   return result;
 }
 
-module.exports = { make, parse }
+module.exports = { make, parse, matchAll }

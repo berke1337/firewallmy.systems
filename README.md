@@ -13,7 +13,7 @@ using the server. Here's the usage for the command:
 
     firewall-my-system FIREWALL PORTSPEC
       FIREWALL = iptables | pf | ipfw
-      PORTSPEC = (t|u)PORTNUMBER [PORTSPEC]
+      PORTSPEC = (t|u|ut|tu)PORTNUMBER [PORTSPEC]
         t for TCP
         u for UDP
 

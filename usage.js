@@ -3,7 +3,7 @@ const USAGE = `firewall-my-system - instant firewall generator
 
 Usage: firewall-my-system FIREWALL PORTSPEC
   FIREWALL = ${Object.keys(firewalls).join(' | ')}
-  PORTSPEC = (t|u)PORTNUMBER [PORTSPEC]
+  PORTSPEC = (t|u|tu|ut)PORTNUMBER [PORTSPEC]
     t for TCP
     u for UDP
 

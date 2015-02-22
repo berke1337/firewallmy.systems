@@ -3,11 +3,7 @@ const Base = require('./base')
 module.exports = class Pf extends Base {
   constructor(config) {
     super(config)
-    const d = new Date()
-    const format_date = [d.getFullYear(), d.getMonth(), d.getDate()].join('-') +
-      '-T-' + 
-      [d.getHours(), d.getMinutes(), d.getMilliseconds()].join('-')
-    this._filename = `fms-firewall-rules-${format_date}.pf`
+    this._filename = `fms-firewall-rules-${this.createdAt}.pf`
   }
     
   header() {
@@ -42,6 +38,6 @@ echo ' >>> DONE! <<<'
     return `pass in proto tcp from any to any port ${port} flags S/SA synproxy state\n`
   }
   buildUdp(port) {
-    return `pass in proto tcp from any to any port ${port} flags S/SA synproxy state\n`
+    return `pass in proto udp from any to any port ${port} flags S/SA synproxy state\n`
   }
 }

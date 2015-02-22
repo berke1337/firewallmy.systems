@@ -1,14 +1,12 @@
 /**
  * base firewall class.
- * Usage:
  */
 module.exports = class BaseFirewall {
   constructor(config) {
     config = config || {}
+    this.createdAt = timestamp()
     this.tcp = config.tcp || []
     this.udp = config.udp || []
-    //console.log(`${new Date().toISOString()}] constructed firewall ${this.constructor.name} with tcp:`,
-                //this.tcp, 'udp:', this.udp)
   }
 
   tcp(port) {
@@ -34,4 +32,11 @@ module.exports = class BaseFirewall {
       this.udp.map(this.buildUdp.bind(this)).join('') +
       this.footer()
   }
+}
+
+function timestamp() {
+  const d = new Date()
+  return [d.getFullYear(), d.getMonth(), d.getDate()].join('-') +
+    '-T-' + 
+    [d.getHours(), d.getMinutes(), d.getMilliseconds()].join('-')
 }
