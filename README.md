@@ -11,7 +11,7 @@
 `firewall-my-systems` can be run on the command line, or accessed over HTTP
 using the server. Here's the usage for the command:
 
-    firewall-my-system FIREWALL PORTSPEC`
+    firewall-my-system FIREWALL PORTSPEC
       FIREWALL = iptables | pf | ipfw
       PORTSPEC = (t|u)PORTNUMBER [PORTSPEC]
         t for TCP
