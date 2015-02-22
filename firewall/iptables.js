@@ -9,6 +9,7 @@ iptables -F
 
 iptables -P INPUT DROP
 iptables -P FORWARD DROP
+iptables -P OUTPUT ACCEPT
 # Allow loopback
 iptables -A INPUT -i lo -j ACCEPT
 # Allow pings
