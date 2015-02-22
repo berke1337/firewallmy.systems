@@ -1,6 +1,19 @@
 const Base = require('./base')
-const HEADER = `
-echo ' >>> writing pf rules to ./firewall-my-system.pf <<<'
+
+module.exports = class Pf extends Base {
+  constructor(config) {
+    super(config)
+    const d = new Date()
+    const format_date = [d.getFullYear(), d.getMonth(), d.getDate()].join('-') +
+      '-T-' + 
+      [d.getHours(), d.getMinutes(), d.getMilliseconds()].join('-')
+    this._filename = `fms-firewall-rules-${format_date}.pf`
+  }
+    
+  header() {
+    const filename = this._filename
+    return `
+echo ' >>> writing pf rules to ${filename} <<<'
 
 echo '
 set block-policy drop
@@ -13,23 +26,18 @@ block in quick from { urpf-failed no-route } to any
 pass out quick inet keep state
 
 `
+  }
+  footer() {
+    const filename = this._filename
+    return `
+' > ./${filename}
 
-const FOOTER = `
-' > ./firewall-my-system.pf
+echo ' >>> loading rules from ./${filename} <<<'
+pfctl -f ./${filename}
 
-echo ' >>> loading rules from ./firewall-my-system.pf <<<'
-pfctl -f ./firewall-my-system.pf
-
-echo '##########################################################'
-echo '# RULES WRITTEN TO ./firewall-my-system.pf AND INSTALLED #'
-echo '# ------------------------------------------------------ #'
-echo '# please rename the file before editing, since further   #'
-echo '# use of firewallmy.systems will overwrite that filename #'
-echo '##########################################################'
+echo ' >>> DONE! <<<'
 `
-module.exports = class Pf extends Base {
-  header() { return HEADER }
-  footer() { return FOOTER }
+  }
   buildTcp(port) {
     return `pass in proto tcp from any to any port ${port} flags S/SA synproxy state\n`
   }

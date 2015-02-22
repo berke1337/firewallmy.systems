@@ -1,6 +1,6 @@
 {
   "name": "firewall-my-systems",
-  "version": "0.4.7",
+  "version": "0.4.8",
   "description": "quick firewall rules builder for iptables, ipfw, and pf",
   "main": "index.js",
   "bin": {
