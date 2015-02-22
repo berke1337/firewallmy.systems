@@ -2,10 +2,11 @@ const app = require('express')()
 const { make } = require('./')
 const USAGE = require('./usage')
 
-const SH_USAGE = `echo '${USAGE}'`
+var SH_USAGE = `echo '${USAGE}'`
   .replace(/firewall-my-system/g, 'firewallmy.systems')
   .replace(' FIREWALL PORTSPEC', '/FIREWALL/PORTSPEC')
   .replace(' iptables t22 t80 u5000', '/iptables/t22/t80/u5000/')
+SH_USAGE += "\n echo 'want your own copy? try `npm install --global firewall-my-systems`'"
 
 app.get('/', (req, res) => { 
   // pls don't re-indent this -- it looks nice ;)
