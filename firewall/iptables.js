@@ -1,29 +1,36 @@
 const Base = require('./base.js')
 
 const PREAMBLE = `
-*filter
+echo ' >>> Installing iptables rules <<<'
+# how to do this in bash?????
+# *filter
 
--P INPUT DROP
--P FORWARD DROP
+iptables -P INPUT DROP
+iptables -P FORWARD DROP
 
 # Allow loopback
--A INPUT -i lo -j ACCEPT
+iptables -A INPUT -i lo -j ACCEPT
 
 # Allow pings
--A INPUT -p icmp --icmp-type 8 -j ACCEPT
+iptables -A INPUT -p icmp --icmp-type 8 -j ACCEPT
 
 # Allow open connections
--A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+
+# specific rules follow:
 `
+
+const FOOTER = `\necho ' >>> DONE! <<<'`
 
 module.exports = class IPTables extends Base {
   header() { return PREAMBLE }
+  footer() { return FOOTER }
 
   buildTcp(port) {
-    return `-A INPUT -p tcp --dport ${port} -j ACCEPT`
+    return `iptables -A INPUT -p tcp --dport ${port} -j ACCEPT\n`
   }
 
   buildUdp(port) {
-    return `-A INPUT -p udp --dport ${port} -j ACCEPT`
+    return `iptables -A INPUT -p udp --dport ${port} -j ACCEPT\n`
   }
 }

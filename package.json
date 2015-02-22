@@ -4,6 +4,7 @@
   "description": "quick firewall rules builder",
   "main": "index.js",
   "scripts": {
+    "start": "./node_modules/.bin/supervisor -e js,jsx,json,styl launch-server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -19,6 +20,7 @@
   "license": "GPL",
   "dependencies": {
     "babel": "^4.4.3",
-    "express": "^4.11.2"
+    "express": "^4.11.2",
+    "supervisor": "^0.6.0"
   }
 }
