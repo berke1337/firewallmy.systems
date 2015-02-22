@@ -37,7 +37,6 @@ function make(name, portspec) {
 function parse(str) {
   const result = {tcp: [], udp: []}
   const matches = matchAll(str, DECL)
-  console.log(matches)
   if (!matches) return result;
   
   matches.forEach(part => {

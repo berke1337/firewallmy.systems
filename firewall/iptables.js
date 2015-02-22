@@ -1,6 +1,14 @@
 const Base = require('./base.js')
 
-const PREAMBLE = `
+
+const FOOTER = `\necho ' >>> DONE! <<<'`
+
+module.exports = class IPTables extends Base {
+  header() {  
+    return `
+echo ' >>> backing up current rules to ${this.backupFilename}'
+iptables -S > ${this.backupFilename}
+
 echo ' >>> Installing iptables rules <<<'
 # reset
 iptables -F
@@ -20,10 +28,7 @@ iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 # specific rules follow:
 `
 
-const FOOTER = `\necho ' >>> DONE! <<<'`
-
-module.exports = class IPTables extends Base {
-  header() { return PREAMBLE }
+  }
   footer() { return FOOTER }
 
   buildTcp(port) {

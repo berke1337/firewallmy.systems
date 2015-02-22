@@ -4,7 +4,9 @@
 module.exports = class BaseFirewall {
   constructor(config) {
     config = config || {}
+    const fwname = this.constructor.name.toLowerCase()
     this.createdAt = timestamp()
+    this.backupFilename = `fms-backup-${this.createdAt}.${fwname}`
     this.tcp = config.tcp || []
     this.udp = config.udp || []
   }
