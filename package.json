@@ -1,7 +1,7 @@
 {
   "name": "firewall-my-systems",
-  "version": "0.4.1",
-  "description": "quick firewall rules builder",
+  "version": "0.4.2",
+  "description": "quick firewall rules builder for iptables, ipfw, and pf",
   "main": "index.js",
   "bin": {
     "firewall-my-systems-server": "./launch-server.js",
@@ -10,6 +10,10 @@
   "scripts": {
     "start": "./node_modules/.bin/supervisor -e js,jsx,json,styl launch-server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/berke1337/firewallmy.systems"
   },
   "keywords": [
     "firewall",
@@ -20,11 +24,17 @@
     "builder",
     "easy"
   ],
-  "author": "Jake Teton-Landis",
+  "author": {
+    "name": "Jake Teton-Landis",
+    "url": "http://jake.teton-landis.org",
+    "email": "just.1.jake@gmail.com"
+  },
   "license": "GPL",
   "dependencies": {
     "babel": "^4.4.3",
-    "express": "^4.11.2",
+    "express": "^4.11.2"
+  },
+  "devDependencies": {
     "supervisor": "^0.6.0"
   }
 }

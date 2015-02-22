@@ -30,8 +30,8 @@ module.exports = class BaseFirewall {
   // finally
   build() {
     return this.header() +
-      this.tcp.map(this.buildTcp.bind(this)) +
-      this.udp.map(this.buildUdp.bind(this)) +
+      this.tcp.map(this.buildTcp.bind(this)).join('') +
+      this.udp.map(this.buildUdp.bind(this)).join('') +
       this.footer()
   }
 }
