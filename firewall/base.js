@@ -7,8 +7,8 @@ module.exports = class BaseFirewall {
     config = config || {}
     this.tcp = config.tcp || []
     this.udp = config.udp || []
-    console.log(`constructed firewall ${this.constructor.name} with tcp:`,
-                this.tcp, 'udp:', this.udp)
+    //console.log(`${new Date().toISOString()}] constructed firewall ${this.constructor.name} with tcp:`,
+                //this.tcp, 'udp:', this.udp)
   }
 
   tcp(port) {
