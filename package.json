@@ -1,8 +1,12 @@
 {
   "name": "firewall-my-systems",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "quick firewall rules builder",
   "main": "index.js",
+  "bin": {
+    "firewall-my-systems-server": "./launch-server.js",
+    "firewall-my-system": "./launch-cli.js"
+  },
   "scripts": {
     "start": "./node_modules/.bin/supervisor -e js,jsx,json,styl launch-server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
