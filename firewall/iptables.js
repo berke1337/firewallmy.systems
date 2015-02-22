@@ -2,18 +2,17 @@ const Base = require('./base.js')
 
 const PREAMBLE = `
 echo ' >>> Installing iptables rules <<<'
-# how to do this in bash?????
-# *filter
+# reset
+iptables -F
+
+# preamble
 
 iptables -P INPUT DROP
 iptables -P FORWARD DROP
-
 # Allow loopback
 iptables -A INPUT -i lo -j ACCEPT
-
 # Allow pings
 iptables -A INPUT -p icmp --icmp-type 8 -j ACCEPT
-
 # Allow open connections
 iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 
