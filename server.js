@@ -6,7 +6,7 @@ var SH_USAGE = `echo '${USAGE}'`
   .replace(/firewall-my-system/g, 'firewallmy.systems')
   .replace(' FIREWALL PORTSPEC', '/FIREWALL/PORTSPEC')
   .replace(' iptables t22 t80 u5000', '/iptables/t22/t80/u5000/')
-SH_USAGE += "\n\n echo 'want your own copy? https://www.npmjs.com/package/firewall-my-systems'\n"
+SH_USAGE += "\n\necho 'want your own copy? https://www.npmjs.com/package/firewall-my-systems'\n"
 
 app.get('/', (req, res) => { 
   // pls don't re-indent this -- it looks nice ;)
