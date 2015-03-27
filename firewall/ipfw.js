@@ -1,6 +1,9 @@
 const Base = require('./base')
 
 const FIRST = `
+echo ' >>> backing up current rules to ${this.backupFilename}'
+ipfw list > ${this.backupFilename}
+
 echo ' >>> loading ipfw rules <<<'
 # reset
 ipfw -q -f flush

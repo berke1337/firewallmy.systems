@@ -9,6 +9,9 @@ module.exports = class Pf extends Base {
   header() {
     const filename = this._filename
     return `
+echo ' >>> backing up current rules to ${this.backupFilename}'
+pfctl -sr > ${this.backupFilename}
+
 echo ' >>> writing pf rules to ${filename} <<<'
 
 echo '
