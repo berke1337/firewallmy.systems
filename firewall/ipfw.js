@@ -1,8 +1,8 @@
 const Base = require('./base')
 
-const FIRST = `
-echo ' >>> backing up current rules to ${this.backupFilename}'
-ipfw list > ${this.backupFilename}
+const FIRST = (backupFilename) => `
+echo ' >>> backing up current rules to ${backupFilename}'
+ipfw list > ${backupFilename}
 
 echo ' >>> loading ipfw rules <<<'
 # reset
@@ -40,7 +40,7 @@ module.exports = class Ipfw extends Base {
   }
 
   header() {
-    return FIRST + 
+    return FIRST(this.backupFilename) + 
       HEADER.map(this.cmd.bind(this)).join('') +
       `\n# open ports \n`
   }
