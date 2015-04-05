@@ -27,7 +27,6 @@ iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 
 # specific rules follow:
 `
-
   }
   footer() { return FOOTER }
 

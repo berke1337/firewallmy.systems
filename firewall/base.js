@@ -24,8 +24,17 @@ module.exports = class BaseFirewall {
   // build parts
   header() { return '' }
   footer() { return '' }
-  buildTcp() { throw 'not implemented' }
-  buildUdp() { throw 'not implemented' }
+
+  /**
+   * Returns a string containing the firewall command required to open the given port.
+   * @param {Number} port port to open
+   */
+  buildTcp(port) { throw 'not implemented' }
+  /**
+   * Returns a string containing the firewall command required to open the given port.
+   * @param {Number} port port to open
+   */
+  buildUdp(port) { throw 'not implemented' }
 
   // finally
   build() {
@@ -39,6 +48,6 @@ module.exports = class BaseFirewall {
 function timestamp() {
   const d = new Date()
   return [d.getFullYear(), d.getMonth(), d.getDate()].join('-') +
-    '-T-' + 
+    '-T-' +
     [d.getHours(), d.getMinutes(), d.getMilliseconds()].join('-')
 }

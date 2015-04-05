@@ -34,3 +34,35 @@ instead of spaces deliminating positional arguments, slashes are used instead.
 To run the example above, you would access
 http://firewallmy.systems/iptables/t22/t80/u5000, although you could use commas
 or any other non-number character to seperate portspecs.
+
+## Contribution Guide
+
+For BERKE1337 members:
+
+1. make a feature branch: `git checkout -b $USER/add-windows-firewall`
+1. make your changes in the branch
+1. test your changes in both the web interface and via the command-line tool.
+   All the firewalls should produce valid `sh` scripts.
+1. submit a pull request for review
+
+For others:
+As above, except fork the repo on github.
+
+### Adding or changing a firewall
+
+Each different firewall is implemented as a single class in /firewalls,
+inheriting from BaseFirewall. Each firewall must implement the following methods:
+
+- `header() -> String` - returns a bash script (as a string) that is inserted
+  above any port-specific firewall commands. This script should print helpful
+  information to the console, back up the current firewall configuration, and
+  do any other preparation such as insert default good settings.
+- `buildTcp(port :: Number) -> String` - returns a string containing the
+  firewall command to open the given port for TCP.
+- `buildUdp(port :: Number) -> String` - returns a string containing the
+  firewall command to open the given port for UDP.
+
+You can also implement `footer() -> String` to provide a close to your script.
+
+After you add a new firewall class, be sure to put it into firewall/index.js
+with a good friendly name so it can be used!
