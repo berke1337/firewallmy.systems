@@ -23,7 +23,7 @@ iptables -A INPUT -i lo -j ACCEPT
 # Allow pings
 iptables -A INPUT -p icmp --icmp-type 8 -j ACCEPT
 # Allow open connections
-iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 
 # specific rules follow:
 `
